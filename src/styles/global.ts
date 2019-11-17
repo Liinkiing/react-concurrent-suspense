@@ -1,5 +1,5 @@
 import {createGlobalStyle} from 'styled-components/macro'
-import {dark} from './module/colors'
+import {white} from './module/colors'
 import bootstrap from './bootstrap'
 import {customScrollbar} from './module/mixins'
 
@@ -15,7 +15,7 @@ export default createGlobalStyle`
   }
   
   body {
-    background: ${dark};
+    background: ${white};
     &.overflow {
       overflow: hidden;
       height: 100vh;
