@@ -12,12 +12,12 @@ const resourceMap = new Map<string, Resource>()
  * A generic resource: given some method to asynchronously load a value - the loader()
  * argument - it allows accessing the state of the resource.
  */
-class Resource {
+class Resource<Shape = {}> {
 
   private _error: Error | null
-  private _loader: () => Promise<any>
-  private _promise: Promise<any> | null
-  private _result: any | null
+  private _loader: () => Promise<Shape>
+  private _promise: Promise<Shape> | null
+  private _result: { data: Shape } | null
 
   constructor(loader: () => Promise<any>) {
     this._error = null
@@ -26,15 +26,15 @@ class Resource {
     this._result = null
   }
 
-  private load(): Promise<any> {
+  private load<ResultShape>(): Promise<any> {
     let promise = this._promise
     if (promise == null) {
       promise = this._loader()
         .then(result => {
-          if (result.default) {
-            result = result.default
+          if ((result as any).default) {
+            result = (result as any).default
           }
-          this._result = result
+          this._result = { data: result }
           return result
         })
         .catch(error => {
@@ -60,17 +60,18 @@ class Resource {
    * - Throw an error if the resource failed to load.
    * - Return the data of the resource if available.
    */
-  public read(throwOnError: boolean = false) {
+  public read(throwOnError: boolean = false): { data: Shape, error: Error | null } {
     if (!this._promise) {
       this._promise = this.load()
     }
     if (this._result != null) {
-      return this._result
+      return { ...this._result, error: null }
     } else if (this._error != null) {
       if (throwOnError) {
         throw this._error
       }
-      return this._error
+      console.error(this._error)
+      return { data: {} as any as Shape, error: this._error }
     } else {
       throw this._promise
     }
@@ -92,11 +93,11 @@ class Resource {
  * ```
  *
  */
-export default function JSResource(moduleId: string, loader: () => Promise<any>): Resource {
+export default function JSResource<ResultShape>(moduleId: string, loader: () => Promise<any>): Resource<ResultShape> {
   let resource = resourceMap.get(moduleId)
   if (resource == null) {
     resource = new Resource(loader)
     resourceMap.set(moduleId, resource)
   }
-  return resource
+  return resource as Resource<ResultShape>
 }
