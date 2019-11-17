@@ -1,6 +1,7 @@
 import React from 'react';
 import useApi from '../hooks/useApi'
 import {Users} from '../@types/api/JSONPlaceholderApi'
+import UserPostList from './UserPostList'
 
 
 const UserList: React.FC = () => {
@@ -17,6 +18,7 @@ const UserList: React.FC = () => {
                     <li key={u.id}>
                         {u.name}
                         <h2>Posts</h2>
+                        <UserPostList userId={u.id}/>
                     </li>
                 )}
             </ul>
