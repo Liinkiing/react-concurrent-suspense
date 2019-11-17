@@ -41,5 +41,6 @@ export default css`
       margin: ${entry[1].margin};
       font-family: Alata, sans-serif;
     }`
-)}
+  )}
+
 `

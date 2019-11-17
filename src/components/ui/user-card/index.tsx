@@ -12,10 +12,6 @@ type UserCardComponent = React.FC<Props> & { Body: typeof Body } & { Header: typ
 
 const UserCardInner = styled.div`
   display: flex;
-  background: whitesmoke;
-  overflow: hidden;
-  border-radius: 6px;
-  ${DEFAULT_BOX_SHADOW};
 `
 
 const UserCard: UserCardComponent = ({children}) => {

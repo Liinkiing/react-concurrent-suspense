@@ -18,6 +18,10 @@ const UserListItem: React.FC<Props> = ({ user, ...rest }) => {
         <UserCard.Header>
           <UserCard.Header.BackgroundImage url={`https://picsum.photos/200?id=${user.id}`}/>
           <UserCard.Header.ProfileImage title={user.name} alt={user.name} url={`https://source.unsplash.com/collection/1475825/400x300?id=${user.id}`}/>
+          {/*<UserCard.Header.Metadata>*/}
+          {/*  <span>{user.name}</span>*/}
+          {/*  <span>{user.email}</span>*/}
+          {/*</UserCard.Header.Metadata>*/}
         </UserCard.Header>
         <UserCard.Body>
         </UserCard.Body>
