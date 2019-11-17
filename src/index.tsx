@@ -1,14 +1,15 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
 import {ErrorBoundary} from './ErrorBoundary'
+import GlobalStyle from "./styles/global"
 
 const root = ReactDOM.createRoot(document.getElementById('root')!)
 root.render(
     <React.StrictMode>
         <ErrorBoundary>
+            <GlobalStyle/>
             <App/>
         </ErrorBoundary>
     </React.StrictMode>

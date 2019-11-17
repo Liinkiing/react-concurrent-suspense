@@ -1,0 +1,6 @@
+{
+  "presets": ["babel-preset-react-app"],
+  "plugins": [
+    ["babel-plugin-styled-components", { "displayName": true }]
+  ]
+}

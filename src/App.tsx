@@ -1,15 +1,19 @@
 import React from 'react';
-import './App.css';
 import UserList from './non-concurrent/UserList'
+import styled from 'styled-components/macro'
+
+const AppInner = styled.div`
+
+`
 
 const App: React.FC = () => {
 
   return (
-    <div className="app">
+    <AppInner>
       <h1>React Concurrent Mode + Suspense</h1>
       <h2>Render then fetch</h2>
       <UserList/>
-    </div>
+    </AppInner>
   );
 }
 
