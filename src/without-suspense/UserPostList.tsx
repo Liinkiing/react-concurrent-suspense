@@ -9,7 +9,9 @@ interface Props {
 }
 
 const UserPostListInner = styled.ul`
-  
+  li {
+    margin: 20px;
+  }
 `
 
 const UserPostList: React.FC<Props> = ({ userId }) => {
@@ -24,7 +26,6 @@ const UserPostList: React.FC<Props> = ({ userId }) => {
             {posts.slice(0, 4).map(post =>
                 <li key={post.id}>
                     {post.body}
-                    <PostCommentList postId={post.id}/>
                 </li>
             )}
         </UserPostListInner>

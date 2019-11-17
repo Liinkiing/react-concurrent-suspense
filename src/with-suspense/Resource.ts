@@ -12,7 +12,7 @@ const resourceMap = new Map<string, Resource>()
  * A generic resource: given some method to asynchronously load a value - the loader()
  * argument - it allows accessing the state of the resource.
  */
-class Resource<Shape = {}> {
+export class Resource<Shape = {}> {
 
   private _error: Error | null
   private _loader: () => Promise<Shape>

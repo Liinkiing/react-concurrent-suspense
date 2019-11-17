@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components/macro'
 import {Users} from '../@types/api/JSONPlaceholderApi'
-import UserListItem from '../components/UserListItem'
+import UserListItem from './UserListItem'
 import JSResource from './Resource'
 
 const AppUserListItem = styled(UserListItem)``
@@ -16,9 +16,9 @@ const UserListContainer = styled.ul`
 `
 
 const USERS_ENDPOINT = 'https://jsonplaceholder.typicode.com/users'
+const resource = JSResource<Users>(USERS_ENDPOINT, () => fetch(USERS_ENDPOINT).then(r => r.json()))
 
 const UserList: React.FC = () => {
-  const resource = JSResource<Users>(USERS_ENDPOINT, () => fetch(USERS_ENDPOINT).then(r => r.json()))
   const { data: users } = resource.read()
 
   return (
@@ -26,7 +26,7 @@ const UserList: React.FC = () => {
       <h1>User List</h1>
       <UserListContainer>
         {users.map(u =>
-          <AppUserListItem key={u.id} user={u} suspend/>
+          <AppUserListItem key={u.id} user={u}/>
         )}
       </UserListContainer>
     </div>

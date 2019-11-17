@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components/macro'
 import useApi from '../hooks/useApi'
 import {Users} from '../@types/api/JSONPlaceholderApi'
-import UserListItem from '../components/UserListItem'
+import UserListItem from './UserListItem'
 
 const AppUserListItem = styled(UserListItem)``
 
