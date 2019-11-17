@@ -1,7 +1,8 @@
 import React, {useState} from 'react';
 import styled from 'styled-components/macro'
-import NonConcurrent from './non-concurrent'
+import WithoutSuspense from './without-suspense'
 import AppToggle from './components/AppToggle'
+import WithSuspense from './with-suspense'
 
 const AppInner = styled.div`
 
@@ -13,7 +14,7 @@ export enum ReactMode {
 }
 
 const App: React.FC = () => {
-  const [mode, setMode] = useState<ReactMode>(ReactMode.WithoutSuspense)
+  const [mode, setMode] = useState<ReactMode>(ReactMode.WithSuspense)
 
   return (
     <AppInner>
@@ -22,7 +23,7 @@ const App: React.FC = () => {
       }}/>
       <h1>React Concurrent Mode + Suspense</h1>
       {mode === ReactMode.WithoutSuspense ?
-        <NonConcurrent/> : <div>With Suspense</div>
+        <WithoutSuspense/> : <WithSuspense/>
       }
     </AppInner>
   );

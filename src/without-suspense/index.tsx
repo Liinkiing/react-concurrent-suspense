@@ -1,7 +1,7 @@
 import React from 'react'
 import UserList from './UserList'
 
-const NonConcurrent: React.FC = () => {
+const WithoutSuspense: React.FC = () => {
   return (
     <React.Fragment>
       <h2>Render then fetch</h2>
@@ -10,4 +10,4 @@ const NonConcurrent: React.FC = () => {
   )
 }
 
-export default NonConcurrent
+export default WithoutSuspense
