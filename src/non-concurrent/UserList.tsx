@@ -1,8 +1,19 @@
 import React from 'react';
+import styled from 'styled-components/macro'
 import useApi from '../hooks/useApi'
 import {Users} from '../@types/api/JSONPlaceholderApi'
-import UserPostList from './UserPostList'
+import UserListItem from '../components/UserListItem'
 
+const AppUserListItem = styled(UserListItem)``
+
+const UserListContainer = styled.ul`
+  display: grid;
+  max-width: 1000px;
+  margin: 0 auto;
+  & ${AppUserListItem}:not(:last-of-type) {
+    margin-bottom: 30px;
+  }
+`
 
 const UserList: React.FC = () => {
     const [{ data: users, isLoading }] = useApi<Users>('https://jsonplaceholder.typicode.com/users')
@@ -13,15 +24,11 @@ const UserList: React.FC = () => {
     return (
         <div className="user-list">
             <h1>User List</h1>
-            <ul>
+          <UserListContainer>
                 {users.map(u =>
-                    <li key={u.id}>
-                        {u.name}
-                        <h2>Posts</h2>
-                        <UserPostList userId={u.id}/>
-                    </li>
+                  <AppUserListItem key={u.id} user={u}/>
                 )}
-            </ul>
+          </UserListContainer>
         </div>
     );
 }

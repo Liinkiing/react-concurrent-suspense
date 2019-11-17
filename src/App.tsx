@@ -13,7 +13,7 @@ export enum ReactMode {
 }
 
 const App: React.FC = () => {
-  const [mode, setMode] = useState<ReactMode>(ReactMode.WithSuspense)
+  const [mode, setMode] = useState<ReactMode>(ReactMode.WithoutSuspense)
 
   return (
     <AppInner>
