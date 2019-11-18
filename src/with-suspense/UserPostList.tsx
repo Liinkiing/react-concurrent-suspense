@@ -2,6 +2,7 @@ import React from 'react'
 import styled from 'styled-components/macro'
 import JSResource from './Resource'
 import {Posts} from '../@types/api/JSONPlaceholderApi'
+import {POSTS_COUNT} from '../utils/constants'
 
 interface Props {
   readonly userId: number,
@@ -21,7 +22,7 @@ const UserPostList: React.FC<Props> = ({userId}) => {
 
   return (
     <UserPostListInner>
-      {posts.slice(0, 4).map(post =>
+      {posts.slice(0, POSTS_COUNT).map(post =>
         <li key={post.id}>
           {post.id} - {post.body}
         </li>

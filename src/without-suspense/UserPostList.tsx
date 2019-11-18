@@ -1,11 +1,11 @@
 import React from 'react'
 import styled from 'styled-components/macro'
 import useApi from '../hooks/useApi'
-import {Posts, Users} from '../@types/api/JSONPlaceholderApi'
-import PostCommentList from './PostCommentList'
+import {Posts} from '../@types/api/JSONPlaceholderApi'
+import {POSTS_COUNT} from '../utils/constants'
 
 interface Props {
-    readonly userId: number
+  readonly userId: number
 }
 
 const UserPostListInner = styled.ul`
@@ -14,22 +14,22 @@ const UserPostListInner = styled.ul`
   }
 `
 
-const UserPostList: React.FC<Props> = ({ userId }) => {
-    const [{ data: posts, isLoading }] = useApi<Posts>(`https://jsonplaceholder.typicode.com/user/${userId}/posts`)
+const UserPostList: React.FC<Props> = ({userId}) => {
+  const [{data: posts, isLoading}] = useApi<Posts>(`https://jsonplaceholder.typicode.com/user/${userId}/posts`)
 
-    if (isLoading || !posts) {
-        return <div>Loading...</div>
-    }
+  if (isLoading || !posts) {
+    return <div>Loading...</div>
+  }
 
-    return (
-        <UserPostListInner>
-            {posts.slice(0, 4).map(post =>
-                <li key={post.id}>
-                    {post.body}
-                </li>
-            )}
-        </UserPostListInner>
-    )
+  return (
+    <UserPostListInner>
+      {posts.slice(0, POSTS_COUNT).map(post =>
+        <li key={post.id}>
+          {post.id} - {post.body}
+        </li>
+      )}
+    </UserPostListInner>
+  )
 }
 
 export default UserPostList
