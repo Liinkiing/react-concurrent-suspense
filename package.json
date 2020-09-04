@@ -9,7 +9,7 @@
     "@types/react-dom": "16.9.4",
     "@types/styled-components": "^4.4.0",
     "polished": "^3.4.2",
-    "react": "^0.0.0-experimental-b53ea6ca0",
+    "react": "^0.14.0",
     "react-dom": "^0.0.0-experimental-b53ea6ca0",
     "react-scripts": "3.2.0",
     "styled-components": "^4.4.1",
